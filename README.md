@@ -265,7 +265,7 @@ A sintaxe básica do if é:
 
 ```python
 if condicao:
-	# insira seu código aqui
+    # insira seu código aqui
 ```
 
 Em outras palavras, chamamos a palavra-chave ```if```, indicamos a condição que deve ser atendida e, se esta for verdadeira, o código seguinte é executado. Num exemplo bem simplificado:
@@ -273,7 +273,7 @@ Em outras palavras, chamamos a palavra-chave ```if```, indicamos a condição qu
 ```python
 x = 5
 if x < 10:
-	print(f'{x} é menor que 10!')
+    print(f'{x} é menor que 10!')
 ```
 
 Ao executarmos:
