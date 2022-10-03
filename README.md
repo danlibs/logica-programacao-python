@@ -4,4 +4,4 @@ Este repositório contém alguns materiais básicos para o aprendizado de progra
 
 ## Materiais disponíveis
 
-<a href="">Material 1 - Resumo sobre ```print()```, ```input()```, ```if``` e variáveis</a>
+<a href="https://github.com/danlibs/logica-programacao-python/tree/main/material1">Material 1 - Resumo sobre print(), input(), if e variáveis</a>
