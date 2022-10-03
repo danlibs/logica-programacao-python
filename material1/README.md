@@ -111,7 +111,24 @@ numero = 3
 a = n + numero # A variável a recebe o valor 51
 ```
 
-- float: são números reais, que possuem o chamado ponto flutuante (no Brasil, utilizamos uma vírgula para expressá-los), como, por exemplo, 3.6, 8.44444, 9.0 etc. Exemplos de float:
+**OBS.:** Para fazer cálculos em Python, temos os seguintes operadores, chamados **operadores aritméticos**:
+
+``+`` -> soma
+
+``-`` -> subtração
+
+``*`` -> multiplicação
+
+``/`` -> divisão
+
+``//`` -> divisão inteira (leva em consideração apenas a parte inteira da divisão, por exemplo 5 // 2 é igual a 2)
+
+``%`` ->  módulo (retorna o resto de uma divisão, por exemplo 8 % 6 é igual a 2. *NÃO CONFUNDA ESSE OPERADOR COM PORCENTAGEM*)
+
+``**`` -> exponenciação (por exemplo, 2``**``2 é o mesmo que 2², ou seja, é igual a 4)
+ 
+
+- float: são números reais, que possuem o chamado ponto flutuante (no Brasil, utilizamos uma vírgula para expressá-los), como, por exemplo, 3.6, 8.44444, 9.0 etc. Também podemos usar float para fazer cálculos. Exemplos de float:
 
 ```python
 numero = 8.0
@@ -193,7 +210,7 @@ Dessa forma, o programa iniciará com a frase "Diga alguma coisa: " na tela. Ao 
 ---
 
 Diga alguma coisa: Sabe qual o nome do chefe que dá comandos simples? É o "pythrão"! <br>
-Sabe qual o nome do chefe que dá comandos simples? É o "pytrão"!
+Sabe qual o nome do chefe que dá comandos simples? É o "pythrão"!
 
 ---
 
@@ -268,7 +285,9 @@ if condicao:
     # insira seu código aqui
 ```
 
-Em outras palavras, chamamos a palavra-chave ```if```, indicamos a condição que deve ser atendida e, se esta for verdadeira, o código seguinte é executado. Num exemplo bem simplificado:
+Em outras palavras, chamamos a palavra-chave ```if```, indicamos a condição que deve ser atendida e, se esta for verdadeira, o código seguinte é executado.Perceba que inserimos o código com uma certa distância da margem (4 espaços, para ser mais específico). Isso se chama **indentação**, e é fundamental para a linguagem Python. Se não colocarmos esse espaço, o código NÃO VAI FUNCIONAR, por isso dizemos que o Python possui indentação semântica, isto é, a indentação traz consigo algum sentido para o código sem o qual ele não funcionará como deve. Basicamente, a indentação informa que o bloco de código está "dentro" do ```if```. Tenha em mente isso, pois usaremos bastante a indentação para muitas coisas em Python. 
+
+Vejamos agora um exemplo bem simplificado:
 
 ```python
 x = 5
@@ -284,4 +303,174 @@ Ao executarmos:
 
 ---
 
+No programa acima, ao testarmos se x < 10, criamos uma **expressão booleana**, isto é, uma expressão que pode ser verdadeira (```True```) ou falsa (```False```). Sendo assim, podemos dizer que, ao utilizarmos o ```if```, devemos indicar nossa condição por meio de uma expressão booleana. Para comparar dados e criar expressões booleanas, utilizamos os chamados **operadores relacionais** (considerando que estabelecem relação entre dois dados), que são os seguintes:
+
+- ``==`` -> igual
+
+- ``!=`` -> diferente (o ! indica a negação de algo, então != significa, na verdade, "não igual", ou seja, diferente)
+
+- ``>`` -> maior que
+
+- ``<`` ->  menor que
+
+- ``>=`` ->  maior ou igual
+
+- ``<=`` ->  menor ou igual
+
+Voltando ao programa anterior, podemos adicionar uma camada mais interessante a ele da seguinte forma:
+
+```python
+x = int(input('Informe um valor: '))
+if x < 10:
+    print(f'{x} é menor que 10!')
+```
+
+Agora, o código apresenta uma camada de incerteza que justifica o uso do ```if```, visto que não sabemos de antemão que valor o usuário irá digitar. Se a pessoa digitar 3, por exemplo, será exibida a mensagem do print:
+
+---
+
+Informe um valor: 3 <br>
+3 é menor que 10!   
+
+---
+
+Porém, e se o usuário digitar um valor maior que 10? Na lógica que criamos, nada acontece, o programa simplesmente é encerrado. Por isso, podemos acrescentar mais uma palavra-chave a nossa estrutura condicional: o ```else``` (que significa "se não"). Podemos acrescentá-la da seguinte maneira ao nosso programa:
+
+```python
+x = int(input('Informe um valor: '))
+if x < 10:
+    print(f'{x} é menor que 10!')
+else:
+    print(f'{x} é maior que 10!')
+```
+
+Assim temos uma solução para o caso de o usuário digitar um número maior que 10! Note que o ```else``` não é acompanhado por um teste de condição, como o ```if```, ele é simplesmente a indicação daquilo que deve acontecer caso o teste do ```if``` tenha um ```False``` como resultado. Diante disso, pense: se executássemos esse código e o usuário digitasse o valor 37, qual das duas frases apareceria? Como exercício, responda a essa pergunta e justifique sua resposta.
+
+Contudo, o programa anterior ainda deixa um caso de lado: e se o usuário digitar o número 10? Perceba: temos uma condição para caso o número digitado seja menor e uma alternativa, o ```else```, que serve para qualquer outro caso. Se executássemos esse código e informássemos o número 10, teríamos uma surpresa:
+
+---
+
+Informe um valor: 10 <br>
+10 é maior que 10!
+
+---
+
+Ora, 10 não é maior que 10, é igual. O problema que ocorre aqui é que o ```else``` nesse programa serve para qualquer caso em que x < 10 retorne um ```False``` como resultado. Dessa forma, podemos perceber que o algoritmo se comportou da seguinte maneira: 
+
+1. Ao pedir para digitar um número, digitamos 10;
+
+2. No ```if```, o programa testa se 10 (o número digitado) é menor que 10;
+
+3. O teste condicional retorna um ```False```, já que 10 não é menor 10; 
+
+4. É executado então o ```else```, cujo código diz para imprimir uma frase informando que o número digitado (10) é maior que 10.
+
+Uma possível solução para esse problema pode ser utilizar outra palavra-chave da estrutura condicional: o ```elif``` (a junção de else + if, "else if", cuja tradução literal seria algo como "se não se"). Essa estrutura nos permite testar outras condições além daquelas presentes no ```if```. Em suma, podemos criar quandos ```elif``` quisermos, para cada nova condição que desejamos testar. O uso do ```elif``` no nosso programa pode ocorrer da seguinte maneira:
+
+```python
+x = int(input('Informe um valor: '))
+if x < 10:
+    print(f'{x} é menor que 10!')
+else if x > 10:
+    print(f'{x} é maior que 10!')
+else:
+    print('Você informou o 10!')
+```
+
+O programa agora testa duas condições: a primeira no ```if```, que inicia a estrutura condicional, verificando se o número digitado é menor que 10; e a segunda no ```elif```, verificando se o número é maior que 10. Por fim, caso um número não seja nem menor e nem maior que 10, ele só pode ser igual a 10, por isso deixamos a tarefa de indicar isso para o ```else```. Vale destacar que poderíamos ter montado esse programa de outras formas, inserindo, por exemplo, ```x == 10``` como condição no ```elif``` e deixando o ```else``` para os casos em que ```x``` fosse maior que 10. Em programação geralmente há mais de uma forma de fazer a mesma coisa.
+
+### Operadores lógicos
+
+Outra coisa interessante que podemos fazer é combinar diferentes condições dentro de uma expressão condicional. Para vermos isso, imagine que agora queremos que nosso programa verifique uma série de especificações sobre um valor digitado pelo usuário: se o número for par e menor que 10, deve aparecer a palavra "parzinho" na tela; caso seja ímpar ou maior que 50, deve aparecer "que estranho..." na tela; caso seja par e maior que 10, deve aparecer "parzao"; por fim, caso nenhuma dessas condições seja satisfeita, a frase "vou nessa" deve aparecer na tela.
+
+Utilizando o que sabemos até o momento, poderíamos fazer isso aninhando os ```if``` (colocando um dentro do outro). Inclusive, tente fazer esse programa como exercício, ao final desta seção teremos uma solução para ele. No entanto, o aninhamento de ```if``` não é uma boa prática na maioria dos casos e podemos facilmente substuí-lo nesse caso utilizando os chamados **operadores lógicos**. Os três que mais utilizaremos são:
+
+```and``` (significa "e")
+
+```or``` (significa "ou")
+
+```not``` (significa "não")
+
+Para entendê-los, pense em seus usos no português: e, ou e não. Ao dizermos algo como "A grama é verde E o céu é azul", temos uma frase verdadeira (nosso ```True``` em Python), já se mudarmos para "A grama é lilás E o céu é azul", a frase se torna falsa (o ```False``` do Python), já que uma das informações passadas ("A grama é lilás") não condiz com a realidade. Esse é só um exemplo para mostrar que, ao combinarmos duas ou mais proposições (informações) com o operador E (o ```and```), a frase como um todo só será verdadeira se todas as proposições forem, também verdadeiras; porém, se uma for falsa, a frase como um todo se torna falsa.
+
+Já no caso do operador OU (o ```or``` do Python), temos o contrário. Pense na frase "A grama é verde OU o céu é azul". Ela é verdadeira (```True```), já que as duas proposições informadas são verdadeiras. Quando a modificamos para "A grama é lilás OU o céu é azul", a frase continua verdadeira, visto que, com o OU, pelo menos uma das proposições deve ser verdadeira para que a frase como um todo seja, também, verdadeira. Ela só será falsa (```False```) se todas as proposições forem falsas.
+
+Por fim, o operador NÃO (```not```) tem a capacidade de mudar algo que é verdadeiro para falso, e vice-versa.
+
+Veja a seguir como utilizamos esses operadores:
+
+```python
+proposicao1 = 5 > 3    # proposicao1 é True, já que 5 é maior que 3
+proposicao2 = 9 <= 6   # proposicao2 é False, já que 9 não é menor ou igual a 6
+if proposicao1 and proposicao2:
+    print('As duas proposições são verdadeiras!')
+elif proposicao1 or proposicao2:
+    print('Pelo menos uma das proposições é verdadeira!')
+else:
+    print('As duas proposições são falsas!')
+```
+
+Ao executarmos esse código, temos apenas a seguinte frase impressa:
+
+---
+
+Pelo menos uma das proposições é verdadeira!
+
+---
+
+No ```if```, ao unirmos a ```proposicao1``` com a ```proposicao2```, testamos se 5 > 3 E 9 <= 6, ou seja, como uma das informações é falsa, então a frase inteira é falsa, logo esse teste falha e vamos para o segundo. No segundo teste, no ```elif```, testamos se 5 > 3 OU 9 <= 6, o que é verdadeiro, já que pelo menos uma das proposições é verdadeira (5 é, de fato, maior que 3). Assim, o bloco de código dentro do ```elif``` é executado, a frase do resultado é impressa na tela e o programa é encerrado. Faça alguns testes: modifique as proposições e veja os resultados! Além disso, teste o uso do ```not``` colocando-o antes da ```proposicao1``` no ```if```:
+
+```python
+proposicao1 = 5 > 3    # proposicao1 é True, já que 5 é maior que 3
+proposicao2 = 9 <= 6   # proposicao2 é False, já que 9 não é menor ou igual a 6
+if not proposicao1 and proposicao2:
+    print('As duas proposições são verdadeiras!')
+elif proposicao1 or proposicao2:
+    print('Pelo menos uma das proposições é verdadeira!')
+else:
+    print('As duas proposições são falsas!')
+```
+
+Faça esse teste, veja o resultado e tente explicá-lo.
+
+Por fim, então, vejamos a solução do problema proposto antes. Queremos fazer uma análise de um número informado pelo usuário, porém atendendo às seguintes condições:
+
+1. se o número for par e menor que 10, deve aparecer a palavra "parzinho" na tela; 
+
+2. caso seja ímpar ou maior que 50, deve aparecer "que estranho..." na tela; 
+
+3. caso seja par e maior que 50, deve aparecer "parzao"; 
+
+4. por fim, caso nenhuma dessas condições seja satisfeita, a frase "vou nessa" deve aparecer na tela.
+
+Podemos facilmente criar esse programa da seguinte maneira:
+
+```python
+numero = int(input('Inform um número: '))
+
+if numero % 2 == 0 and numero < 10: # Verifica se o número é par (o resto da divisão por 2 é 0) e se é menor que 10
+    print('parzinho')
+elif numero % 2 != 0 or numero > 50:
+    print('que estranho...')
+elif numero % 2 == 0 and numero > 10:
+    print('parzao')
+else:
+    print('vou nessa')
+```
+
+Analise esse código e tente responder sem executá-lo: o que é escrito na tela nos casos em que informarmos os números 9, 6, 37, 10 e 84?
+
+# EXERCÍCIOS
+
+1. Escreva um programa que receba a idade do usuário e, com base no ano atual, calcule seu ano de nascimento.
+
+2. Escreva um programa que recebe dois valores e mostre sua soma, subtração, multiplicação e divisão.
+
+3. Escreva um programa que calcula a área de um triângulo. Você deve pedir para o usuário as medidas necessárias para o cálculo da área.
+
+4. Escreva um programa que pede um número para o usuário e verifica se ele é positivo ou negativo.
+
+5. Uma empresa vai realizar o reajuste dos salários de seus funcionários. Na empresa, há gerentes e vendedores. Os gerentes receberão um aumento de 5%, enquanto que os vendedores receberão um aumento de 3%. Você deve criar o software que fará o cálculo do novo salário de um funcionário. Para isso, você precisará perguntar a função (se é gerente ou vendedor) e o salário atual. Com base nessas informações, realize o cálculo apropriado e informe o resultado.
+
+**OBS.:** Lembre-se que nenhum programador sabe tudo! Caso tenha alguma dúvida sobre algum comando ou queria fazer algo que não foi ensinado aqui (por exemplo, formatar o número de casas decimais de um número), não deixe de pesquisar na internet.    
 
